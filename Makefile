@@ -27,3 +27,6 @@ train:
 	  --output_dir="./model-output" \
 	  --rank 256 \
 	    --cache_dir data-cache
+
+# Run a mock inference script
+# inference:
