@@ -16,6 +16,4 @@ def finetune():
     print("hallo")
     spectogram, sampling_rate = audio_to_spectrogram("./examples/audio.mp3")
     print(spectogram)
-    spectogram_image = Image.fromarray(spectogram[0])
-    spectogram_image.show()
-
+    spectogram[0].show()
