@@ -2,7 +2,7 @@
 
 import argparse
 
-from .. import diffusionjockey
+from diffusionjockey.utils import audio_to_spectrogram
 
 def read_args():
     parser = argparse.ArgumentParser()
@@ -11,10 +11,11 @@ def read_args():
 
 args = read_args()
 
-spectogram, sampling_rate = audio_to_spectrogram("./examples/audio.mp3")
-
 import PIL.Image as Image
-
-spectogram_image = Image.fromarray(spectogram)
-spectogram_image.show()
+def finetune():
+    print("hallo")
+    spectogram, sampling_rate = audio_to_spectrogram("./examples/audio.mp3")
+    print(spectogram)
+    spectogram_image = Image.fromarray(spectogram)
+    spectogram_image.show()
 
