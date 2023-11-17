@@ -1,3 +1,5 @@
 __pycache__/
 fma/data/
 input/
+model-outputs
+diffusers

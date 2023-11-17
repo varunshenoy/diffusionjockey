@@ -26,7 +26,7 @@ def select_nonempty(df):
 # data as pytorch tensors.
 def make_spectrograms(track_id):
     audio_path = fma.utils.get_audio_path(AUDIO_DIR, track_id)
-    write_path = fma.utils.get_audio_path(WRITE_DIR, track_id).replace('.mp3', '.pt')
+    write_path = f"{WRITE_DIR}{track_id}.pt"
 
     slices, sample_rate = dj.audio_to_spectrogram(audio_path)
 
@@ -81,6 +81,8 @@ if __name__ == '__main__':
     for track_id, metadat in data.loc[SAMPLE_TRACK_IDS].iterrows():
         make_spectrograms(track_id)
         descriptions[track_id] = format_description(genres, metadat)
+
+    print(descriptions)
 
     torch.save(descriptions, WRITE_DIR + 'descriptions.pt')
 

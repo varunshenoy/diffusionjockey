@@ -42,6 +42,8 @@ from torchvision.transforms.functional import crop
 from tqdm.auto import tqdm
 from transformers import AutoTokenizer, PretrainedConfig
 
+from jockey_dataset import load_custom_dataset
+
 import diffusers
 from diffusers import (
     AutoencoderKL,
@@ -61,10 +63,6 @@ from diffusers.utils.import_utils import is_xformers_available
 check_min_version("0.24.0.dev0")
 
 logger = get_logger(__name__)
-
-print("~~~~~~~~~~~~~~~~~~~~~~~~")
-print("Starting training script")
-print("~~~~~~~~~~~~~~~~~~~~~~~~")
 
 
 def save_model_card(
@@ -201,7 +199,7 @@ def parse_args(input_args=None):
     parser.add_argument(
         "--validation_epochs",
         type=int,
-        default=1,
+        default=2000,
         help=(
             "Run fine-tuning validation every X epochs. The validation process consists of running the prompt"
             " `args.validation_prompt` multiple times: `args.num_validation_images`."
@@ -766,25 +764,31 @@ def main(args):
 
     # In distributed training, the load_dataset function guarantees that only one local process can concurrently
     # download the dataset.
-    if args.dataset_name is not None:
-        # Downloading and loading a dataset from the hub.
-        dataset = load_dataset(
-            args.dataset_name, args.dataset_config_name, cache_dir=args.cache_dir, data_dir=args.train_data_dir
-        )
-    else:
-        data_files = {}
-        if args.train_data_dir is not None:
-            data_files["train"] = os.path.join(args.train_data_dir, "**")
-        dataset = load_dataset(
-            "imagefolder",
-            data_files=data_files,
-            cache_dir=args.cache_dir,
-        )
-        # See more about loading custom images at
-        # https://huggingface.co/docs/datasets/v2.4.0/en/image_load#imagefolder
+    # if args.dataset_name is not None:
+    #     # Downloading and loading a dataset from the hub.
+    #     dataset = load_dataset(
+    #         args.dataset_name, args.dataset_config_name, cache_dir=args.cache_dir, data_dir=args.train_data_dir
+    #     )
+    # else:
+    #     data_files = {}
+    #     if args.train_data_dir is not None:
+    #         data_files["train"] = os.path.join(args.train_data_dir, "**")
+    #     dataset = load_dataset(
+    #         "imagefolder",
+    #         data_files=data_files,
+    #         cache_dir=args.cache_dir,
+    #     )
+    #     # See more about loading custom images at
+    #     # https://huggingface.co/docs/datasets/v2.4.0/en/image_load#imagefolde
+
+
+    dataset = {
+            "train": load_custom_dataset()
+    }
 
     # Preprocessing the datasets.
     # We need to tokenize inputs and targets.
+
     column_names = dataset["train"].column_names
 
     # 6. Get the column names for input/target.
@@ -836,6 +840,7 @@ def main(args):
     )
 
     def preprocess_train(examples):
+        print(examples[image_column][0])
         images = [image.convert("RGB") for image in examples[image_column]]
         # image aug
         original_sizes = []
