@@ -32,6 +32,6 @@ def load_custom_dataset():
     image_data = Dataset.from_dict({"image": image_list, "text": text_list})
     return image_data
 
-dataset = load_custom_dataset()
-dataset.push_to_hub("punwaiw/DiffusionJockey")
+# dataset = load_custom_dataset()
+# dataset.push_to_hub("punwaiw/DiffusionJockey")
 
