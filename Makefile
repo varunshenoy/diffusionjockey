@@ -29,4 +29,8 @@ train:
 	    --cache_dir data-cache
 
 # Run a mock inference script
-# inference:
+decode:
+	python decode.py -i generated/spectograms -o generated/mp3s
+
+inference:
+	python inference.py
