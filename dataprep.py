@@ -77,10 +77,13 @@ if __name__ == '__main__':
     descriptions = dict()
 
     # To iterate over whole training set, replace with
-    # for s in data.iterrows()
-    for track_id, metadat in data.loc[SAMPLE_TRACK_IDS].iterrows():
-        make_spectrograms(track_id)
-        descriptions[track_id] = format_description(genres, metadat)
+    #for track_id, metadat in data[data.index >= 99134].iterrows():
+    for track_id, metadat in data.iterrows():
+        try:
+            make_spectrograms(track_id)
+            descriptions[track_id] = format_description(genres, metadat)
+        except RuntimeError:
+            print("Error reading or processing ", track_id)
 
     torch.save(descriptions, WRITE_DIR + 'descriptions.pt')
 
