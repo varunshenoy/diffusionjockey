@@ -20,7 +20,7 @@ def resample_audio(audio, sample_rate=TARGET_SAMPLE_RATE):
 
 def audio_to_spectrogram(audio_file, resample=False):
     # load audio from mp3 file
-    audio, sample_rate = torchaudio.load(audio_file)
+    audio, sample_rate = torchaudio.load(audio_file, format="mp3")
 
     mel = Mel(X_RES, Y_RES, sample_rate)
 
