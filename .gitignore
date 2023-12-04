@@ -4,3 +4,4 @@ input/
 sdd/data/
 model-outputs
 diffusers
+eval/
