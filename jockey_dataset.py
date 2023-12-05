@@ -13,6 +13,7 @@ def load_custom_dataset_start():
     # Directory for training inputs
     WRITE_DIR = 'input-512/'
 
+<<<<<<< HEAD
     # Turn it into huggingface dataset format
 
     descriptions = torch.load(WRITE_DIR + 'descriptions.pt')
@@ -69,4 +70,8 @@ def load_custom_dataset_start():
 
 dataset = load_custom_dataset_start()
 dataset.push_to_hub("punwaiw/diffusionJockeyDynamicsTight")
+=======
+dataset = load_custom_dataset()
+# dataset.push_to_hub("punwaiw/DiffusionJockey")
+>>>>>>> 4582d1c (sasa)
 

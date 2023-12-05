@@ -21,13 +21,10 @@ for file in os.listdir(args.input_dir):
     file_path = os.path.join(args.input_dir, file)
     # Rest of the code to process the file goes here
     image = Image.open(file_path)
-    img_exif = pil_image.getexif()
-    image_tensor = transforms.ToTensor()(image).mean(axis=0)
-    image = transforms.ToPILImage()(image_tensor)
 
     # Rest of the code to process the file goes here
     audio = spectrogram_to_audio(image, sample_rate=44100)
 
     output_file_path = os.path.join(args.output_dir, file)
     output_file_path = output_file_path.replace('.png', '.mp3')
-    save_audio(audio, output_file_path)
+    audio.export(output_file_path, format="mp3")
