@@ -19,7 +19,7 @@ FMA_AUDIO_DIR = 'fma/data/fma_small/'
 SDD_AUDIO_DIR = 'sdd/data/audio/'
 
 # Directory for training inputs
-WRITE_DIR = 'input/'
+WRITE_DIR = 'input-512/'
 
 # These ten tracks all have nonempty tags
 SAMPLE_TRACK_IDS = [114399, 112583, 74387, 75908, 86793, 91160, 123509, 54753, 147956, 133274]
@@ -50,7 +50,7 @@ def make_spectrograms(track_id, sdd_path = None):
 
     # Creates a tensor of shape (slice id, spectro height, spectro width)
     t = torch.stack(t)
-    
+
     # torch will refuse to save if the directory does not exist
     write_dir = os.path.dirname(write_path)
     if not os.path.isdir(write_dir):
@@ -137,7 +137,7 @@ if __name__ == '__main__':
                 descriptions[sdd_relabel[sdd_id]].append(metadat['caption'])
         except RuntimeError as err:
             print("Error reading or processing SDD", sdd_id, ":", err)
-        
+
     for sdd_id in data['track_id'].unique():
         # Don't try adding the tags unless the audio could be processed in the first place
         if sdd_id in sdd_relabel:

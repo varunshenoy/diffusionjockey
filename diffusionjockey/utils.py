@@ -4,11 +4,11 @@ import numpy as np
 from torchaudio import transforms as AT
 from diffusers.pipelines.audio_diffusion.mel import Mel
 
-TARGET_SAMPLE_RATE = 32000
+TARGET_SAMPLE_RATE = 44100
 
 # SDXL resolution
-X_RES = 1024
-Y_RES = 1024
+X_RES = 512
+Y_RES = 512
 
 
 def resample_audio(audio, sample_rate=TARGET_SAMPLE_RATE):
@@ -36,6 +36,10 @@ def audio_to_spectrogram(audio_file, resample=False):
     slices = []
     for i in range(num_slices):
         mel_slice = mel.audio_slice_to_image(i)
+        audio_slice = mel.get_audio_slice(i)
+        # audio_tensor = audio_slice.reshape((Y_RES, X_RES))
+        # print(audio_tensor.shape)
+        print(audio_slice.shape)
         slices.append(mel_slice)
 
     return slices, sample_rate
