@@ -8,7 +8,6 @@ def load_custom_dataset():
     dataset = load_dataset("punwaiw/DiffusionJockey")
     return dataset["train"]
 
-
 # def load_custom_dataset():
 #     # Directory for training inputs
 #     WRITE_DIR = 'input/'
@@ -42,5 +41,5 @@ def load_custom_dataset():
 #     return image_data
 
 dataset = load_custom_dataset()
-print(dataset)
+dataset.push_to_hub("punwaiw/DiffusionJockey")
 
