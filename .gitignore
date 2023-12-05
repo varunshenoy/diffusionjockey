@@ -1,9 +1,13 @@
 __pycache__/
 fma/data/
-sdd/data/
+sdd/data
 input/
-model-output
+generated/spectograms
+generated/mp3s
+spectogram_images
+model-outputs
 diffusers
+model-output
 
 mask.png
 mask2.png
@@ -34,3 +38,5 @@ gpu8-output/
 gpu8.outs
 rank512
 input-512/*
+*.zip
+anaconda3-tmp

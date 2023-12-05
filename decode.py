@@ -16,21 +16,18 @@ args = parser.parse_args()
 import os
 
 for file in os.listdir(args.input_dir):
+    print(file)
     # Process each file in input_dir
     file_path = os.path.join(args.input_dir, file)
     # Rest of the code to process the file goes here
+    image = Image.open(file_path)
+    img_exif = pil_image.getexif()
+    image_tensor = transforms.ToTensor()(image).mean(axis=0)
+    image = transforms.ToPILImage()(image_tensor)
 
-    for file in os.listdir(args.input_dir):
-        # Process each file in input_dir
-        file_path = os.path.join(args.input_dir, file)
-        # Rest of the code to process the file goes here
-        image = Image.open(file_path)
-        image_tensor = transforms.ToTensor()(image).mean(axis=0)
-        image = transforms.ToPILImage()(image_tensor)
+    # Rest of the code to process the file goes here
+    audio = spectrogram_to_audio(image, sample_rate=44100)
 
-        # Rest of the code to process the file goes here
-        audio = spectrogram_to_audio(image)
-
-        output_file_path = os.path.join(args.output_dir, file)
-        output_file_path = output_file_path.replace('.png', '.mp3')
-        save_audio(audio, output_file_path)
+    output_file_path = os.path.join(args.output_dir, file)
+    output_file_path = output_file_path.replace('.png', '.mp3')
+    save_audio(audio, output_file_path)

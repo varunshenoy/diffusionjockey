@@ -6,6 +6,7 @@ pipe = DiffusionPipeline.from_pretrained(
         revision="main",
         torch_dtype=torch.float16,
 )
+
 pipe.to("cuda:7")
 
 pipe.scheduler = DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)

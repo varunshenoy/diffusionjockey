@@ -7,4 +7,6 @@ datasets
 ftfy
 tensorboard
 Jinja2
+python-dotenv
+pydot
 

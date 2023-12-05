@@ -41,7 +41,7 @@ def make_spectrograms(track_id, sdd_path = None):
 
     write_path = fma.utils.get_audio_path(WRITE_DIR, track_id).replace('.mp3', '.pt')
 
-    slices, sample_rate = dj.audio_to_spectrogram(audio_path)
+    slices, sample_rate = dj.audio_to_spectrogram_riffusion(audio_path)
 
     t = list()
     for image in slices:
@@ -143,8 +143,6 @@ if __name__ == '__main__':
         if sdd_id in sdd_relabel:
             descriptions[sdd_relabel[sdd_id]].append(
                 sdd_make_description(mtg.loc[sdd_id]))
-
-    print(descriptions)
 
     torch.save(descriptions, WRITE_DIR + 'descriptions.pt')
 

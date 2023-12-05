@@ -1,15 +1,16 @@
 from diffusionjockey.utils import *
 from matplotlib import pyplot as plt
 
-slices, sample_rate = audio_to_spectrogram("examples/audio.mp3")
+slices, sample_rate = audio_to_spectrogram_riffusion("audio.mp3")
+print(sample_rate)
 
 image = slices[0]
+image.save("spectrogram.png")
+
+sample_rate = 44100
+
 # display spectrogram
-plt.imshow(image, cmap="gray")
-plt.show()
-
-
 audio = spectrogram_to_audio(image, sample_rate)
-print(audio.shape)
+audio.export("audio_reconstructi.mp3", format="mp3")
 
-save_audio(audio, "examples/audio_reconstructed.mp3", sample_rate=sample_rate)
+# save_audio(audio, "audio_reconstructed.mp3", sample_rate=sample_rate)
