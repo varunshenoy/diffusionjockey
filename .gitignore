@@ -40,3 +40,7 @@ rank512
 input-512/*
 *.zip
 anaconda3-tmp
+
+controlnet-output-smooth
+data-cache-2
+data-cache-3

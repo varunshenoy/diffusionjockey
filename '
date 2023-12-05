@@ -1,0 +1,47 @@
+#. $PREFIX/anaconda3/etc/profile.d/conda.sh
+export PREFIX=/lfs/local/0/suppakit/
+#conda activate base
+
+source /future/u/suppakit/anaconda3/bin/activate
+
+export FHOME=/future/u/suppakit
+
+export MODEL_NAME="stabilityai/stable-diffusion-xl-base-1.0" &&
+export VAE_NAME="madebyollin/sdxl-vae-fp16-fix" &&
+export DATASET_NAME="lambdalabs/pokemon-blip-captions"
+
+alias g=git
+alias ga="git add ."
+alias gc="git commit -m"
+alias gs="git status"
+
+export WANDB_CACHE_DIR=$PREFIX/wandb_cache
+export WANDB_CONFIG_DIR=$PREFIX/wandb_config
+export WANDB_DATA_DIR=$PREFIX/wandb_data
+
+alias work="cd $PREFIX"
+export PIP_CACHE_DIR=$PREFIX/pip_cache
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/lfs/ampere5/0/suppakit/google-cloud-sdk/path.bash.inc' ]; then . '/lfs/ampere5/0/suppakit/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/lfs/ampere5/0/suppakit/google-cloud-sdk/completion.bash.inc' ]; then . '/lfs/ampere5/0/suppakit/google-cloud-sdk/completion.bash.inc'; fi
+
+
+export HF_DATASETS_CACHE=/future/u/suppakit/hf-cache-2
+export WANDB_DIR=/future/u/suppakit/wandblogs
+export HF_HOME=/future/u/suppakit/hf-home-2
+export TRANSFORMERS_CACHE=/future/u/suppakit/transformers-cache-2
+export WANDB_CONFIG_DIR=/future/u/suppakit/wandb_config
+export WANDB_CACHE_DIR=/future/u/suppakit/wandb_cache
+export WANDB_DATA_DIR=/future/u/suppakit/wandb_data
+
+#export HF_DATASETS_CACHE=/lfs/skampere1/0/1/hf-cache
+#export WANDB_DIR=/lfs/skampere1/0/1/wandblogs
+#export HF_HOME=/lfs/skampere1/0/1/hf-home
+#export TRANSFORMERS_CACHE=/lfs/skampere1/0/1/transformers-cache
+#export WANDB_CONFIG_DIR=/lfs/skampere1/0/1/wandb_config
+#export WANDB_CACHE_DIR=/lfs/skampere1/0/1/wandb_cache
+#export WANDB_DATA_DIR=/lfs/skampere1/0/1/wandb_data
+# ~/.bashrc.user   CWD: /lfs/skampere1/0/1   Line: 38  Column: 1

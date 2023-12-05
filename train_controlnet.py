@@ -37,6 +37,8 @@ from PIL import Image
 from torchvision import transforms
 from tqdm.auto import tqdm
 from transformers import AutoTokenizer, PretrainedConfig
+from datasets import disable_caching
+
 
 import diffusers
 from diffusers import (
