@@ -144,8 +144,6 @@ if __name__ == '__main__':
             descriptions[sdd_relabel[sdd_id]].append(
                 sdd_make_description(mtg.loc[sdd_id]))
 
-    print(descriptions)
-
     torch.save(descriptions, WRITE_DIR + 'descriptions.pt')
 
     # Load descriptions into dictionary with

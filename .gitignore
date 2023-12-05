@@ -1,6 +1,11 @@
 __pycache__/
 fma/data/
-sdd/data/
+sdd/data
 input/
-model-output
+generated/spectograms
+generated/mp3s
+spectogram_images
+model-outputs
 diffusers
+*.zip
+anaconda3-tmp
