@@ -5,3 +5,5 @@ sdd/data/
 model-outputs
 diffusers
 eval/
+eval_spectro/
+eval_audio/
