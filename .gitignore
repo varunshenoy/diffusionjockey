@@ -7,3 +7,4 @@ diffusers
 eval/
 eval_spectro/
 eval_audio/
+evalpipeline/
